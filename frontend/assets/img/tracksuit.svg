@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 150" fill="none" stroke="#ffffff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+  <!-- jacket -->
+  <path d="M42 10 L60 18 L78 10 L104 22 L114 62 L100 66 L94 42 L94 82 L26 82 L26 42 L20 66 L6 62 L16 22 Z"/>
+  <path d="M60 18 L60 82"/>
+  <path d="M42 10 L52 26 L60 18 L68 26 L78 10"/>
+  <path d="M30 26 L24 60 M90 26 L96 60" stroke-opacity=".6"/>
+  <!-- pants -->
+  <path d="M30 88 L90 88 L94 144 L68 144 L60 102 L52 144 L26 144 Z"/>
+  <path d="M36 92 L32 140 M84 92 L88 140" stroke-opacity=".6"/>
+</svg>

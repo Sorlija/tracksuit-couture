@@ -1,0 +1,34 @@
+<!-- REGISTER -->
+<section class="container py-5">
+  <div class="card border-0 p-4 mx-auto tc-auth-card">
+    <h1 class="text-center">Create account</h1>
+    <p class="text-center text-secondary">Track orders and leave reviews</p>
+    <form>
+      <div class="row g-3">
+        <div class="col-sm-6">
+          <label class="form-label" for="regFirst">First name</label>
+          <input id="regFirst" class="form-control" required>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label" for="regLast">Last name</label>
+          <input id="regLast" class="form-control" required>
+        </div>
+        <div class="col-12">
+          <label class="form-label" for="regEmail">Email</label>
+          <input type="email" id="regEmail" class="form-control" required>
+        </div>
+        <div class="col-12">
+          <label class="form-label" for="regPassword">Password</label>
+          <input type="password" id="regPassword" class="form-control" minlength="8" required>
+          <div class="form-text">At least 8 characters.</div>
+        </div>
+        <div class="col-12">
+          <label class="form-label" for="regConfirm">Confirm password</label>
+          <input type="password" id="regConfirm" class="form-control" required>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-gold w-100 mt-4">Register</button>
+    </form>
+    <p class="text-center small mt-3 mb-0">Already have an account? <a href="#login" class="link-dark fw-semibold">Log in</a></p>
+  </div>
+</section>
