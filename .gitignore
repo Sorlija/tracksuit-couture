@@ -1,5 +1,5 @@
 # Secrets (real config is never committed, config.example.php is)
-backend/config/config.php
+backend/config/config.example.php
 
 # Logs
 backend/logs/*
