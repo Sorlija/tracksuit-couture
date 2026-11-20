@@ -1,4 +1,6 @@
-# Tracksuit Couture: draft ERD (Milestone 1)
+# Tracksuit Couture: ERD
+
+Updated in Milestone 2 to match the real schema in `database/tracksuit_couture.sql`.
 
 GitHub renders the diagram below automatically.
 
@@ -60,7 +62,8 @@ erDiagram
         decimal total_amount "in BAM"
         varchar shipping_address
         varchar shipping_city
-        varchar payment_method
+        varchar shipping_zip
+        enum payment_method "cash_on_delivery, card_on_delivery"
         datetime created_at
     }
 
@@ -100,4 +103,6 @@ erDiagram
 - **`order_items.unit_price`** stores the price at the moment of purchase, so changing a product price later does not change old orders.
 - **Prices are stored in BAM.** Other currencies are calculated live using the external API (Frankfurter) and are never stored.
 - **Cart** is kept on the frontend (localStorage) until checkout, so it is not a database table.
+- **Unique rules:** one review per user per product (`product_id + user_id`), and one variant per product, size and colour.
+- **Delete rules:** deleting a product deletes its variants and reviews (CASCADE). A category with products, a user with orders, or a variant that was ordered cannot be deleted (RESTRICT), so order history is never lost.
 - **Roles:** `admin` (full CRUD on all entities) and `customer` (browse, order, review, manage own profile).
