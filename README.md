@@ -4,7 +4,7 @@ Tracksuit Couture is an online shop for premium tracksuits. Customers can browse
 
 Built as a single-page application for **IT 2001 Web Programming** (International Burch University).
 
-> Status: **Milestone 1** (project setup, static SPA frontend, draft ERD). This README is a draft and is updated in every milestone.
+> Status: **Milestone 2** (database + DAO layer). This README is updated in every milestone.
 
 ## Tech stack
 
@@ -37,7 +37,13 @@ The full draft ERD is in [docs/ERD.md](docs/ERD.md).
 | admin | Full CRUD on all entities, manage order status, admin dashboard |
 | customer | Browse products, manage own cart, place orders, view own orders, write reviews, edit own profile |
 
-Test accounts: _added in Milestone 4._
+Test accounts (created by the sample data in the `.sql` file):
+
+| Role | Email | Password |
+|---|---|---|
+| admin | admin@tracksuitcouture.ba | Admin123! |
+| customer | amar@example.com | Customer123! |
+| customer | lejla@example.com | Customer123! |
 
 ## External API
 
@@ -51,7 +57,7 @@ Feature: prices are stored in BAM, and the customer can switch the currency (EUR
 tracksuit-couture/
 ├── backend/
 │   ├── config/        # config.example.php (real config.php is not committed)
-│   ├── dao/           # data access objects (Milestone 2)
+│   ├── dao/           # Database.php (PDO connection), BaseDao.php + one DAO per entity
 │   ├── logs/          # info.log, error.log (not committed)
 │   ├── middleware/    # auth, roles, logging, error handling (Milestone 4)
 │   ├── routes/        # FlightPHP routes (Milestone 3)
@@ -62,6 +68,8 @@ tracksuit-couture/
 │   ├── js/            # router.js (SPA routing), app.js
 │   ├── views/         # HTML views loaded by the router
 │   └── index.html     # SPA shell
+├── database/
+│   └── tracksuit_couture.sql   # schema + sample data
 ├── docs/
 │   ├── AI_LOG.md
 │   └── ERD.md
@@ -82,7 +90,18 @@ php -S localhost:8000
 ```
 Then open `http://localhost:8000`.
 
-Database import and config setup: _added in Milestone 2._
+### Database setup
+
+1. Start **MySQL** in the XAMPP Control Panel.
+2. Import `database/tracksuit_couture.sql`:
+   - **DBeaver:** connect to `localhost:3306` (user `root`, empty password by default), open a new SQL editor, open the file and run it as a script (**Alt+X**).
+   - **phpMyAdmin:** Import tab, choose the file, Go.
+   The script creates the `tracksuit_couture` database, all tables and sample data.
+3. Create the config file:
+   ```bash
+   cp backend/config/config.example.php backend/config/config.php
+   ```
+   Then fill in your database user and password in `config.php`. This file is in `.gitignore` and is never committed.
 
 ## Links
 

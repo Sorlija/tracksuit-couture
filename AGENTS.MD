@@ -21,7 +21,9 @@ Tracksuit Couture is an online shop for tracksuits, built as a single-page appli
 3. Backend layers, in this order: **route → middleware → service → DAO → database**.
    - Routes only read the request, call a service and return JSON with the correct status code.
    - Services hold business logic and validation, and are the only layer that calls DAOs.
-   - DAOs only run SQL. Every DAO extends a `BaseDao` with reusable CRUD methods.
+   - DAOs only run SQL. Every DAO extends `BaseDao` (getAll, getById, add, update, delete) and passes its table name and list of writable columns to the parent constructor. Only those columns may appear in INSERT/UPDATE.
+   - The PDO connection is created only in `backend/dao/Database.php`, from `config/config.php`.
+   - `UserDao` never returns `password_hash`, except `getByEmail()` which is used for login.
 4. All SQL uses prepared statements. Never concatenate user input into SQL.
 5. Secrets (DB credentials, JWT secret, API keys) live only in `backend/config/config.php`, which is gitignored. `config.example.php` is the committed template.
 6. Middleware is registered in FlightPHP once and reused, never copied into individual routes.
@@ -32,6 +34,7 @@ Tracksuit Couture is an online shop for tracksuits, built as a single-page appli
 ```
 backend/  config/ dao/ logs/ middleware/ routes/ services/
 frontend/ assets/ css/ js/ views/ index.html
+database/ tracksuit_couture.sql (schema + sample data)
 docs/     ERD.md AI_LOG.md
 ```
 
@@ -51,6 +54,6 @@ docs/     ERD.md AI_LOG.md
 - Do not add new libraries or frameworks without being asked.
 - Do not put AJAX calls in views. From Milestone 5, only files in `frontend/js/services/` talk to the backend.
 - Do not commit or suggest committing `config.php`, logs or `vendor/`.
-- Do not invent database columns. Use the schema in `docs/ERD.md` (and the `.sql` file from Milestone 2).
+- Do not invent database columns. The source of truth is `database/tracksuit_couture.sql`. When the schema changes, update the `.sql` file and `docs/ERD.md` together.
 - Prices are stored in BAM. Converted prices from the external API are never stored in the database.
 - Do not use em dashes in documentation text.
