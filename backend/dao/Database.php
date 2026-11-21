@@ -1,22 +1,23 @@
 <?php
 
+require_once __DIR__ . '/../utils/Config.php';
+
+/**
+ * Creates one shared PDO connection to the MySQL database.
+ * Credentials are read from config/config.php (not committed to Git) via Config.
+ */
 class Database
 {
     private static $connection = null;
 
     public static function connect()
     {
-
+        // Reuse the connection if it was already created during this request
         if (self::$connection !== null) {
             return self::$connection;
         }
 
-        $configFile = __DIR__ . '/../config/config.php';
-        if (!file_exists($configFile)) {
-            throw new Exception('Missing config/config.php. Copy config.example.php to config.php and fill it in.');
-        }
-        $config = require $configFile;
-        $db = $config['db'];
+        $db = Config::get('db');
 
         $dsn = "mysql:host={$db['host']};port={$db['port']};dbname={$db['name']};charset=utf8mb4";
 

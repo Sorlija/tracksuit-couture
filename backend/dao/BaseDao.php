@@ -2,6 +2,14 @@
 
 require_once __DIR__ . '/Database.php';
 
+/**
+ * Reusable CRUD methods shared by all DAOs.
+ *
+ * Every child DAO passes its table name and the list of columns that may be
+ * written. Only those columns are used in INSERT/UPDATE, so a request can never
+ * inject its own column names into the SQL. All values go through prepared
+ * statements (named placeholders like :name).
+ */
 abstract class BaseDao
 {
     protected $connection;
@@ -29,6 +37,7 @@ abstract class BaseDao
 
     // ---------- CREATE ----------
 
+    /** Inserts a row and returns it (with its new id). */
     public function add($entity)
     {
         $data = $this->onlyAllowedColumns($entity);
@@ -48,6 +57,10 @@ abstract class BaseDao
 
     // ---------- UPDATE ----------
 
+    /**
+     * Updates only the fields that were sent (works for both PUT and PATCH).
+     * Returns the updated row, or null if the id does not exist.
+     */
     public function update($id, $entity)
     {
         $data = $this->onlyAllowedColumns($entity);
@@ -71,6 +84,7 @@ abstract class BaseDao
 
     // ---------- DELETE ----------
 
+    /** Returns true if a row was deleted, false if the id did not exist. */
     public function delete($id)
     {
         $statement = $this->connection->prepare("DELETE FROM {$this->table} WHERE id = :id");
@@ -78,8 +92,30 @@ abstract class BaseDao
         return $statement->rowCount() > 0;
     }
 
+    // ---------- Transactions ----------
+    // All DAOs share one PDO connection, so a transaction started here also
+    // covers queries made through other DAOs (used when placing an order).
+
+    public function beginTransaction()
+    {
+        $this->connection->beginTransaction();
+    }
+
+    public function commit()
+    {
+        $this->connection->commit();
+    }
+
+    public function rollBack()
+    {
+        if ($this->connection->inTransaction()) {
+            $this->connection->rollBack();
+        }
+    }
+
     // ---------- Helpers for child DAOs ----------
 
+    /** Runs a SELECT and returns all rows. */
     protected function query($sql, $params = [])
     {
         $statement = $this->connection->prepare($sql);
@@ -87,12 +123,14 @@ abstract class BaseDao
         return $statement->fetchAll();
     }
 
+    /** Runs a SELECT and returns the first row, or null if nothing was found. */
     protected function queryOne($sql, $params = [])
     {
         $rows = $this->query($sql, $params);
         return $rows[0] ?? null;
     }
 
+    /** Keeps only the keys that are real, writable columns of this table. */
     protected function onlyAllowedColumns($entity)
     {
         return array_intersect_key($entity, array_flip($this->columns));

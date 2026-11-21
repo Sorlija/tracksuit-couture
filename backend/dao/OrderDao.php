@@ -12,6 +12,7 @@ class OrderDao extends BaseDao
         ]);
     }
 
+    /** All orders with the customer's email and number of items (admin table). */
     public function getAllWithCustomer()
     {
         return $this->query(
@@ -23,6 +24,7 @@ class OrderDao extends BaseDao
         );
     }
 
+    /** Orders of one customer ("My orders" page). */
     public function getByUser($userId)
     {
         return $this->query(
@@ -41,5 +43,12 @@ class OrderDao extends BaseDao
             "SELECT * FROM orders WHERE status = :status ORDER BY created_at DESC",
             ['status' => $status]
         );
+    }
+
+    /** How many orders a user has (a user with orders cannot be deleted). */
+    public function countByUser($userId)
+    {
+        $row = $this->queryOne("SELECT COUNT(*) AS total FROM orders WHERE user_id = :user_id", ['user_id' => $userId]);
+        return (int) $row['total'];
     }
 }

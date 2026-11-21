@@ -1,0 +1,12 @@
+{
+    "name": "sorlija/tracksuit-couture-backend",
+    "description": "REST API for Tracksuit Couture (FlightPHP + MySQL)",
+    "type": "project",
+    "require": {
+        "php": ">=8.1",
+        "ext-pdo": "*",
+        "ext-curl": "*",
+        "flightphp/core": "^3.12",
+        "zircote/swagger-php": "^4.8 || ^5.0 || ^6.0 || ^7.0"
+    }
+}
