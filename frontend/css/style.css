@@ -1,0 +1,119 @@
+/* ===== Theme ===== */
+:root {
+  --tc-black: #0f0f10;
+  --tc-dark: #1b1b1e;
+  --tc-gold: #c8a96a;
+  --tc-gold-dark: #a88a4d;
+  --tc-light: #f6f4ef;
+  --tc-muted: #6c6c72;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--tc-light);
+  color: var(--tc-black);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+h1, h2, h3, .tc-display {
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: .04em;
+}
+
+.tc-main { flex: 1; }
+
+/* ===== Navbar / footer ===== */
+.tc-navbar { background: var(--tc-black); }
+.tc-brand {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: .06em;
+  color: #fff;
+}
+.tc-brand span { color: var(--tc-gold); }
+.tc-navbar .nav-link.active { color: var(--tc-gold) !important; }
+.tc-currency { width: auto; background-color: var(--tc-dark); color: #fff; border-color: #444; }
+.tc-badge { background: var(--tc-gold); color: var(--tc-black); }
+.tc-footer { background: var(--tc-black); color: #fff; }
+
+/* ===== Buttons ===== */
+.btn-gold {
+  background: var(--tc-gold);
+  border-color: var(--tc-gold);
+  color: var(--tc-black);
+  font-weight: 600;
+}
+.btn-gold:hover { background: var(--tc-gold-dark); border-color: var(--tc-gold-dark); color: var(--tc-black); }
+
+/* ===== Hero ===== */
+.tc-hero {
+  background: linear-gradient(120deg, var(--tc-black) 55%, #2a2418);
+  color: #fff;
+  padding: 5rem 0;
+}
+.tc-hero h1 { font-size: clamp(2.8rem, 7vw, 5rem); line-height: .95; }
+.tc-hero h1 span { color: var(--tc-gold); }
+
+/* ===== Product cards ===== */
+.tc-card {
+  border: 0;
+  border-radius: .75rem;
+  overflow: hidden;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.tc-card:hover { transform: translateY(-4px); box-shadow: 0 .75rem 1.5rem rgba(0,0,0,.12); }
+.tc-card a { color: inherit; text-decoration: none; }
+
+/* Placeholder product image: tinted background + tracksuit icon.
+   Replaced with real images (image_url column) later. */
+.tc-thumb {
+  aspect-ratio: 4 / 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ddd;
+}
+.tc-thumb img { width: 55%; opacity: .9; }
+.tc-thumb.lg img { width: 45%; }
+.bg-black-tc  { background: linear-gradient(160deg, #2b2b2e, #0f0f10); }
+.bg-navy-tc   { background: linear-gradient(160deg, #2c3e66, #141d33); }
+.bg-olive-tc  { background: linear-gradient(160deg, #6b7045, #3a3d22); }
+.bg-cream-tc  { background: linear-gradient(160deg, #efe6d2, #cdbf9f); }
+.bg-burgundy-tc { background: linear-gradient(160deg, #7a2733, #3f1018); }
+.bg-grey-tc   { background: linear-gradient(160deg, #9a9aa0, #5d5d63); }
+.bg-cream-tc img { filter: invert(1); }
+
+.tc-price { font-weight: 700; }
+.tc-category-tile {
+  border-radius: .75rem;
+  color: #fff;
+  padding: 2.5rem 1.5rem;
+  text-decoration: none;
+  display: block;
+}
+.tc-category-tile:hover { color: var(--tc-gold); }
+
+/* ===== Product page ===== */
+.tc-size { min-width: 3rem; }
+.tc-size.active { background: var(--tc-black); color: #fff; }
+.tc-swatch {
+  width: 2rem; height: 2rem; border-radius: 50%;
+  border: 2px solid #fff; box-shadow: 0 0 0 1px #ccc;
+  display: inline-block;
+}
+
+/* ===== Auth pages ===== */
+.tc-auth-card { max-width: 440px; }
+
+/* ===== Admin ===== */
+.tc-stat { border-left: 4px solid var(--tc-gold); }
+.tc-admin-tabs .nav-link { color: var(--tc-black); }
+.tc-admin-tabs .nav-link.active { background: var(--tc-black); color: #fff; }
+
+/* ===== Small screens ===== */
+@media (max-width: 576px) {
+  .tc-hero { padding: 3rem 0; }
+  .table-responsive { font-size: .9rem; }
+}

@@ -1,0 +1,18 @@
+# Secrets (real config is never committed, config.example.php is)
+backend/config/config.example.php
+
+# Logs
+backend/logs/*
+!backend/logs/.gitkeep
+
+# Composer dependencies
+vendor/
+backend/vendor/
+
+# Environment / editor / OS
+.env
+.vscode/
+.idea/
+*.log
+.DS_Store
+Thumbs.db

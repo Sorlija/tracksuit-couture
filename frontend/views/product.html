@@ -1,0 +1,86 @@
+<!-- PRODUCT DETAILS (static example, loaded by id from Milestone 4) -->
+<section class="container py-5">
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="#home" class="link-dark">Home</a></li>
+      <li class="breadcrumb-item"><a href="#shop" class="link-dark">Shop</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Monaco Velour Tracksuit</li>
+    </ol>
+  </nav>
+
+  <div class="row g-5">
+    <div class="col-md-6">
+      <div class="tc-thumb lg bg-black-tc rounded-4"><img src="assets/img/tracksuit.svg" alt="Monaco Velour Tracksuit"></div>
+    </div>
+
+    <div class="col-md-6">
+      <span class="badge text-bg-dark mb-2">Velour</span>
+      <h1 class="display-5">Monaco Velour Tracksuit</h1>
+      <div class="mb-3 text-warning">
+        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-half"></i>
+        <span class="text-secondary ms-1">4.5 (3 reviews)</span>
+      </div>
+
+      <!-- External API: price converted to the selected currency (Frankfurter) -->
+      <div class="mb-4">
+        <span class="fs-3 tc-price">289.00 BAM</span>
+        <span class="text-secondary ms-2" title="Converted with live exchange rates">&asymp; 147.76 EUR</span>
+      </div>
+
+      <p class="text-secondary">Soft cotton-blend velour with a tailored, slim fit. Full-zip jacket with gold-tone hardware and matching tapered joggers with cuffed ankles.</p>
+
+      <h6 class="fw-bold mt-4">Colour</h6>
+      <div class="d-flex gap-2 mb-3">
+        <span class="tc-swatch" style="background:#111" title="Black"></span>
+        <span class="tc-swatch" style="background:#1d2a4d" title="Navy"></span>
+        <span class="tc-swatch" style="background:#6b2230" title="Burgundy"></span>
+      </div>
+
+      <h6 class="fw-bold">Size</h6>
+      <div class="d-flex flex-wrap gap-2 mb-2">
+        <button class="btn btn-outline-dark tc-size">S</button>
+        <button class="btn btn-outline-dark tc-size active">M</button>
+        <button class="btn btn-outline-dark tc-size">L</button>
+        <button class="btn btn-outline-dark tc-size">XL</button>
+        <button class="btn btn-outline-dark tc-size" disabled>XXL</button>
+      </div>
+      <p class="small text-success mb-4"><i class="bi bi-check-circle"></i> In stock (12 left in M)</p>
+
+      <div class="d-flex gap-2">
+        <input type="number" class="form-control" style="max-width: 90px" value="1" min="1" aria-label="Quantity">
+        <a href="#cart" class="btn btn-gold flex-grow-1"><i class="bi bi-bag-plus"></i> Add to cart</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Reviews -->
+  <div class="row mt-5">
+    <div class="col-lg-8">
+      <h2>Reviews</h2>
+
+      <div class="card border-0 p-3 mb-3">
+        <div class="d-flex justify-content-between"><strong>Amar H.</strong><small class="text-secondary">12.10.2026</small></div>
+        <div class="text-warning small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i></div>
+        <p class="mb-0 mt-1">Best fitting tracksuit I own. The velour feels premium.</p>
+      </div>
+      <div class="card border-0 p-3 mb-3">
+        <div class="d-flex justify-content-between"><strong>Lejla M.</strong><small class="text-secondary">03.10.2026</small></div>
+        <div class="text-warning small"><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star"></i></div>
+        <p class="mb-0 mt-1">Great quality, runs slightly small. Size up.</p>
+      </div>
+
+      <!-- Write a review (logged-in customers only, from Milestone 4) -->
+      <div class="card border-0 p-3">
+        <h6 class="fw-bold">Write a review</h6>
+        <form>
+          <select class="form-select mb-2" aria-label="Rating">
+            <option value="5">5 - Excellent</option><option value="4">4 - Good</option>
+            <option value="3">3 - Okay</option><option value="2">2 - Poor</option><option value="1">1 - Bad</option>
+          </select>
+          <textarea class="form-control mb-2" rows="3" placeholder="Share your thoughts..."></textarea>
+          <button type="submit" class="btn btn-dark">Submit review</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
